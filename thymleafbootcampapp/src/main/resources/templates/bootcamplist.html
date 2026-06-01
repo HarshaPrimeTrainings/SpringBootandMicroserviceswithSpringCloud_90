@@ -1,0 +1,25 @@
+<style>
+tr,td,th{
+border:solid 1px; 
+
+}
+</style>
+
+<h1>BootCamps</h1>
+
+
+<table>
+<tr>
+<th>ID</th>
+<th>TOPIC</th>
+<th>DATE</th>
+<th>Register</th>
+</tr>
+<tr th:each="btcmp:${boocampList}">
+<td th:text="${btcmp.bid}"></td>
+<td th:text="${btcmp.topic}"></td>
+<td th:text="${btcmp.date}"></td>
+<td><button>REGISTER</button></td>
+</tr>
+</table>
+
