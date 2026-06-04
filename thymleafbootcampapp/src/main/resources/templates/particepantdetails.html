@@ -1,0 +1,28 @@
+<header>
+<style>
+body{
+margin:0;
+text-align: center;
+
+}
+.header {
+	background: teal;
+	padding: 15px;
+	color: white;
+	margin-bottom: 50px;
+}
+
+</style>
+</header>
+<div class="header">
+	<h1><a href="/" style="text-decoration: none; color: white;">BOOT CAMP</a></h1>
+</div>
+
+<div style="color: green">
+	Registraion Success for <span th:text="${bootcampdetail.topic}"></span>
+</div>
+<div>
+	Name: <span th:text="${particepant.name}"></span></br> Email: <span
+		th:text="${particepant.email}"></span></br> Contact: <span
+		th:text="${particepant.contact}"></span></br>
+</div>

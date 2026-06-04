@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.training.thymleafbootcampapp.model.BootCamp;
+import com.training.thymleafbootcampapp.model.Bootcamps;
 
 import jakarta.annotation.PostConstruct;
 
@@ -23,26 +27,29 @@ import jakarta.annotation.PostConstruct;
 @Controller
 public class BootCampController {
 
-	List<BootCamp> bootcamps = new ArrayList<>();
-	
-	@PostConstruct
-	public void initBootcamps() {
-		bootcamps.add(new BootCamp(1, "SpringBoot", LocalDate.of(2026,05,31)));
-		bootcamps.add(new BootCamp(2, "Angular", LocalDate.of(2026,06,1)));
-		bootcamps.add(new BootCamp(3, "Cloud", LocalDate.of(2026,07,4)));
-		bootcamps.add(new BootCamp(4, "MicroServices", LocalDate.of(2026,05,30)));
-	}
+	@Autowired
+	Bootcamps bootcamps;
 	
 	@RequestMapping("/")
 	public String home() {
 		return "home";
 	}
 	
+	@RequestMapping("/searchbootcamp")
+	public ModelAndView searchBootcamps(@RequestParam String search) {
+		ModelAndView mav = new ModelAndView();
+		List<BootCamp> filteredBootcamps = bootcamps.getBootCamps().stream()
+		.filter(b->b.getTopic().toLowerCase().contains(search.toLowerCase()))
+		.collect(Collectors.toList());
+		mav.addObject("boocampList",filteredBootcamps );
+		mav.setViewName("bootcamplist");
+		return mav;
+	}
 	
 	@RequestMapping("/bootcamps")
 	public ModelAndView shoeBootcamps() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("boocampList", bootcamps);
+		mav.addObject("boocampList", bootcamps.getBootCamps());
 		mav.setViewName("bootcamplist");
 		return mav;
 	}
@@ -55,14 +62,13 @@ public class BootCampController {
 	
 	@RequestMapping(value = "/savebootcamp",method = RequestMethod.POST)
 	public ModelAndView saveBootcamp(BootCamp btcmp) {
-		btcmp.setBid(bootcamps.size()+1);
-		bootcamps.add(btcmp);
+		btcmp.setBid(bootcamps.getBootCamps().size()+1);
+		bootcamps.addBootCamp(btcmp);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("boocampList", bootcamps);
+		mav.addObject("boocampList", bootcamps.getBootCamps());
 		mav.setViewName("bootcamplist");
 		return mav;
 	}
-	
 	
 	
 }

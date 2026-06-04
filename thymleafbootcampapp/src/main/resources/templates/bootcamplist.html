@@ -1,11 +1,36 @@
 <style>
+body{
+margin:0;
+text-align: center;
+
+}
+.header {
+	background: teal;
+	padding: 15px;
+	color: white;
+	margin-bottom: 50px;
+}
+input{
+margin: 15px auto;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+table{
+margin: 0 auto;
+border-collapse: collapse;
+}
 tr,td,th{
 border:solid 1px; 
-
 }
 </style>
 
-<h1>BootCamps</h1>
+<div class="header">
+	<h1><a href="/" style="text-decoration: none; color: white;">BOOT CAMP</a></h1>
+</div>
+
+<form action="/searchbootcamp">
+<input type="text" name="search"><input type="submit" value="SEARCH">
+</form>
 
 
 <table>
@@ -13,13 +38,15 @@ border:solid 1px;
 <th>ID</th>
 <th>TOPIC</th>
 <th>DATE</th>
+<th>ParticepantsCount</th>
 <th>Register</th>
 </tr>
 <tr th:each="btcmp:${boocampList}">
 <td th:text="${btcmp.bid}"></td>
 <td th:text="${btcmp.topic}"></td>
 <td th:text="${btcmp.date}"></td>
-<td><button>REGISTER</button></td>
+<td th:text="${btcmp.particepants.size()}"></td>
+<td><button><a th:href="@{/addparticepant/{bid}(bid=${btcmp.bid})}">REGISTER</a></button></td>
 </tr>
 </table>
 
