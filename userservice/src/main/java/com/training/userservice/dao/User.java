@@ -6,7 +6,9 @@ public class User {
 	private String name;
 	private String contact;
 	private String addr;
+	private String passwrod;
 	
+		
 	public User(Integer uid, String name, String contact, String addr) {
 		this.uid = uid;
 		this.name = name;
@@ -38,6 +40,15 @@ public class User {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
+	public String getPasswrod() {
+		return passwrod;
+	}
+
+	public void setPasswrod(String passwrod) {
+		this.passwrod = passwrod;
+	}
+	
 	
 	
 }

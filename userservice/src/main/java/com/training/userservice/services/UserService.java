@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.training.userservice.dao.User;
+import com.training.userservice.exceptions.UserNotFoundException;
 
 import jakarta.annotation.PostConstruct;
 
@@ -44,7 +45,7 @@ public class UserService {
 	public User updateUser(Integer uid,User usr) {
 		User existing = userList.stream()
 		.filter(u->u.getUid()==uid).findFirst()
-		.orElseThrow(()->new RuntimeException("User Not found "+ uid));
+		.orElseThrow(()->new UserNotFoundException("User Not found "+ uid));
 		
 		existing.setName(usr.getName());
 		existing.setAddr(usr.getAddr());
@@ -55,7 +56,7 @@ public class UserService {
 	public User updateUserpartial(Integer uid,User usr) {
 		User existing = userList.stream()
 		.filter(u->u.getUid()==uid).findFirst()
-		.orElseThrow(()->new RuntimeException("User Not found "+ uid));
+		.orElseThrow(()->new UserNotFoundException("User Not found "+ uid));
 		
 		existing.setName(usr.getName()!=null?usr.getName():existing.getName());
 		existing.setAddr(usr.getAddr()!=null?usr.getAddr():existing.getAddr());
@@ -66,7 +67,7 @@ public class UserService {
 	public User getUserByName(String name) {
 		User existing = userList.stream()
 				.filter(u->u.getName().equalsIgnoreCase(name)).findFirst()
-				.orElseThrow(()->new RuntimeException("User Not found "+ name));
+				.orElseThrow(()->new UserNotFoundException("User Not found "+ name));
 		return existing;
 	}
 	
