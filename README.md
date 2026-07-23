@@ -34,3 +34,6 @@
 
 # Swagger URL
 - http://localhost:8080/swagger-ui/index.html
+
+# Zipkin Download url (zipkin-server-x.x.x-exec.jar)
+https://repo1.maven.org/maven2/io/zipkin/zipkin-server/3.5.1/
