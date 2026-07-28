@@ -73,6 +73,9 @@ public class UserController {
 	
 	public ResponseEntity<UserDto> fallbackgetOrdersByUid(Integer uid,Throwable ex){
 		System.out.println("fallbackgetOrdersByUid");
+		// service.getUserOrders(uid) will throw error so its gives default error response code 500 So
+		// to get 503 return null
+		//return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(service.getUserOrders(uid));
 		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(null);
 	}
 	
