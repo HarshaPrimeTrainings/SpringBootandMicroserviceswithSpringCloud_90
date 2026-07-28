@@ -60,7 +60,7 @@ public class UserController {
 	}
 	int count = 0;
 	@Retry(name="orderretry")
-	@CircuitBreaker(name="getordercircuit",fallbackMethod = "fallbackgetOrdersByUid")
+	@CircuitBreaker(name="orderretry",fallbackMethod = "fallbackgetOrdersByUid")
 	@GetMapping("/orders/{uid}")
 	public ResponseEntity<UserDto> getOrdersByUid(@PathVariable Integer uid){
 		
@@ -72,7 +72,8 @@ public class UserController {
 	
 	
 	public ResponseEntity<UserDto> fallbackgetOrdersByUid(Integer uid,Throwable ex){
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(service.getUserOrders(uid));
+		System.out.println("fallbackgetOrdersByUid");
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(null);
 	}
 	
 	
