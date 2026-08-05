@@ -29,7 +29,7 @@ public class SecurityConfig {
 		.hasAnyRole("ADMIN","MNGR") // Multi Roles
 		//.hasAuthority("ADMIN")
 		.anyRequest().authenticated())
-		.formLogin(formlogin->formlogin.permitAll())
+		.formLogin(formlogin->formlogin.loginPage("/login").permitAll())
 		.logout(logout->logout.permitAll())
 		.csrf(csrf->csrf.disable());
 		
