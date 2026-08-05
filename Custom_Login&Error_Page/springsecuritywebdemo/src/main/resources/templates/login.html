@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<center>
+<h1>Custom Login</h1>
+<div style="color: red" th:if="${param.error}"> Login Failed check credentials</div>
+</br>
+<div style="color: green" th:if="${param.logout}"> Logged out successfully</div>
+</br>
+<form method="post" action="/login">
+UserName: <input type="text" name="username"></br>
+Password: <input type="password" name="password"></br>
+<input type="submit">
+</form>
+
+</center>
+</body>
+</html>
