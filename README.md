@@ -115,7 +115,7 @@ Then go to client settings check the checkbox Direct access grants at Capability
 ![KEYCLOAK troublShoot ](https://github.com/HarshaPrimeTrainings/SpringBootandMicroserviceswithSpringCloud_82/blob/main/directaccess.PNG)
 
 # Token Generation With KEYCLOAK
-![KEYCLOAK Token Generation ](https://github.com/HarshaPrimeTrainings/SpringBootandMicroserviceswithSpringCloud_90/blob/main/keycloaktoken.JPG)
+![KEYCLOAK Token Generation ](https://github.com/HarshaPrimeTrainings/SpringBootandMicroserviceswithSpringCloud_90/blob/main/keycloaktoken.PNG)
 # Testing API with KEYCLOAK Token
 - User ACCESS
 ![KEYCLOAK Token Testing ](https://github.com/HarshaPrimeTrainings/SpringBootandMicroserviceswithSpringCloud_90/blob/main/useracces.PNG)
