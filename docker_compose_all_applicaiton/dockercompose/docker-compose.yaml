@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  service1:
+    image: userservice
+    build:
+      context: ./../userservice
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service3
+  service2:
+    image: orderservice
+    build:
+      context: ./../orderservice
+      dockerfile: Dockerfile
+    ports:
+      - "7075:7075"
+    depends_on:
+      - service3
+  service3:
+    image: eurekaservice
+    build:
+      context: ./../eurekaservice
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+  service4:
+    image: apigateway
+    build:
+      context: ./../apigatway
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - service3
